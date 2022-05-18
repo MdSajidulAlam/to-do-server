@@ -23,6 +23,14 @@ async function run() {
             res.send({ success: true })
         })
 
+        app.get('/mytasks', async (req, res) => {
+            const email = req.query.email
+            const query = { email: email }
+            const cursor = taskCollection.find(query)
+            const myTask = await cursor.toArray()
+            res.send(myTask)
+        })
+
 
     }
     finally {
